@@ -108,25 +108,25 @@ openssl pkcs12 -in yourwebsite.p12 -out yourwebsite.pem -nodes
 
 修改 server.xml
 
-<Connector port="8443" 
-           protocol="org.apache.coyote.http11.Http11AprProtocol"
-           maxThreads="2048" 
-           maxHttpHeaderSize="8192"
-           URIEncoding="UTF-8"
-           connectionTimeout="20000"
-           minSpareThreads="20"
-           acceptCount="1000"
-           enableLookups="false"
-           useBodyEncodingForURI="true"
-           SSLCertificateKeyFile="/websecure/yourwebsite.pem"
-           SSLPassword="yourpassword"
-           SSLVerifyClient="false"
-           SSLProtocol="TLSv1"
-           SSLCertificateFile="/websecure/yourwebsite.crt" 
-           SSLEnabled="true" 
-           scheme="https" 
-           secure="true"                
-/>
+    <Connector port="8443" 
+               protocol="org.apache.coyote.http11.Http11AprProtocol"
+               maxThreads="2048" 
+               maxHttpHeaderSize="8192"
+               URIEncoding="UTF-8"
+               connectionTimeout="20000"
+               minSpareThreads="20"
+               acceptCount="1000"
+               enableLookups="false"
+               useBodyEncodingForURI="true"
+               SSLCertificateKeyFile="/websecure/yourwebsite.pem"
+               SSLPassword="yourpassword"
+               SSLVerifyClient="false"
+               SSLProtocol="TLSv1"
+               SSLCertificateFile="/websecure/yourwebsite.crt" 
+               SSLEnabled="true" 
+               scheme="https" 
+               secure="true"                
+ />
 
 vi server.xml
 
