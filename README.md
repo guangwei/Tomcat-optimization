@@ -60,6 +60,8 @@ vi /etc/security/limits.d/90-nproc.conf
 soft nproc 65535
 
 3, 修改JAVA VM启动参数 vi catalina.sh
+
+
 JAVA_OPTS="-server -Xms1500M -Xmx1500M -Xss256K -Djava.awt.headless=true -Dfile.encoding=utf-8"
 
 4, 启动APR提高性能
