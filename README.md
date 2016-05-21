@@ -80,7 +80,7 @@ cd /home/runner/tools/tomcat/bin/tomcat-native-1xx
 
 ./configure --with-apr=/home/runner/tools/apr/bin/apr-1-config --with-java-home=/home/runner/tools/jdk --prefix=/home/runner/tools/jdk
 
-4, 数字证书配置
+5, 数字证书配置
 
 生成CSR 提交到 CA:
 
@@ -106,7 +106,7 @@ keytool -importkeystore -srckeystore yourwebsite.keystore -destkeystore yourwebs
 
 openssl pkcs12 -in yourwebsite.p12 -out yourwebsite.pem -nodes
 
-修改 server.xml
+6 修改 server.xml   优化Connector配置
 
     <Connector port="8443" 
                protocol="org.apache.coyote.http11.Http11AprProtocol"
