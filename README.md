@@ -1,6 +1,3 @@
-Tomcat 优化  CentOS 6.x
-
-Welcome to the Tomcat-optimization wiki!
 
 Tomcat 优化 CentOS 6.x
 
@@ -62,7 +59,8 @@ vi /etc/security/limits.d/90-nproc.conf
 
 soft nproc 65535
 
-3, 修改JAVA VM启动参数 vi catalina.sh JAVA_OPTS="-server -Xms1500M -Xmx1500M -Xss256K -Djava.awt.headless=true -Dfile.encoding=utf-8"
+3, 修改JAVA VM启动参数 vi catalina.sh
+JAVA_OPTS="-server -Xms1500M -Xmx1500M -Xss256K -Djava.awt.headless=true -Dfile.encoding=utf-8"
 
 4, 启动APR提高性能
 
@@ -82,11 +80,11 @@ cd /home/runner/tools/tomcat/bin/tomcat-native-1xx
 
 4, 数字证书配置
 
-gen csr, submmit to CA:
+生成CSR 提交到 CA:
 
 keytool -genkey -alias mykey -keyalg RSA -keystore yourwebsite.keystore -keysize 2048
 
-import crt downloaded from CA:
+从CA处下载CRT 导入到keystore中:
 
 keytool -importcert -alias Root -trustcacerts -file AddTrustExternalCARoot.crt -keystore yourwebsite.keystore
 
@@ -98,15 +96,15 @@ keytool -import -trustcacerts -alias mykey -file yourwebsite.crt -keystore yourw
 
 storepass : yourpassword
 
-convert jks keystore file to pkcs12:
+用java keytool将 jks keystore 文件格式转换为 pkcs12格式:
 
 keytool -importkeystore -srckeystore yourwebsite.keystore -destkeystore yourwebsite.p12 -srcstoretype JKS -deststoretype PKCS12 -srcstorepass yourpassword -deststorepass yourpassword -srcalias mykey -destalias mykey -srckeypass yourpassword -destkeypass yourpassword -noprompt
 
-convert pkcs12 to pem:
+用openssl 将 pkcs12 转为 pem:
 
 openssl pkcs12 -in yourwebsite.p12 -out yourwebsite.pem -nodes
 
-vi server.xml
+修改 server.xml
 
 <Connector port="8443" 
            protocol="org.apache.coyote.http11.Http11AprProtocol"
@@ -131,3 +129,8 @@ vi server.xml
 vi server.xml
 
 禁用 unpackWARs 和autoDeploy
+
+   <Host name="localhost"  appBase="webapps"
+            unpackWARs="false" autoDeploy="false">
+
+
