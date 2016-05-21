@@ -129,8 +129,6 @@ openssl pkcs12 -in yourwebsite.p12 -out yourwebsite.pem -nodes
 vi server.xml
 
 禁用 unpackWARs 和autoDeploy
-
-   <Host name="localhost"  appBase="webapps"
-            unpackWARs="false" autoDeploy="false">
+<Host name="localhost"  appBase="webapps"  unpackWARs="false" autoDeploy="false">
 
 
